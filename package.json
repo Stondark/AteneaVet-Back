@@ -1,0 +1,26 @@
+{
+  "name": "ateneavet-back",
+  "version": "0.0.1",
+  "description": "backend ateneavet",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Stondark/AteneaVet-Back.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Stondark/AteneaVet-Back/issues"
+  },
+  "homepage": "https://github.com/Stondark/AteneaVet-Back#readme",
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "prisma": "^4.12.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
