@@ -1,0 +1,25 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model especie {
+  id_especie             Int                    @id @default(autoincrement())
+  nombre                 String
+  clasificacion          Int
+  esperanza_vida         Int
+  peso_promedio          Float
+  clasificacion_animales clasificacionanimales @relation(fields: [clasificacion], references: [id], onDelete: Cascade, map: "especie_ibfk_1")
+
+  @@index([clasificacion], map: "clasificacion")
+}
+
+model clasificacionanimales {
+  id                   Int       @id @default(autoincrement())
+  nombre_clasificacion String    @db.VarChar(120)
+  especie              especie[]
+}
