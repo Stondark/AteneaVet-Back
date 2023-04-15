@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Prisma  } from '@prisma/client'
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 const getEspecies = async (req, res) =>{
     try {
@@ -28,7 +28,9 @@ const getEspeciesById = async (req, res) =>{
                 clasificacion_animales: true
             }
         });
-        return res.json({success: true, data: especies});
+        
+        let success_bol = especies === null ? false : true;
+        return res.json({success: success_bol, data: especies || "Registro no encontrado" });
     } catch (error) {
         
     }
