@@ -5,9 +5,11 @@ const validateReq = (req, res, next) => {
         validationResult(req).throw();
         return next();
     } catch (error) {
-        res.status(403);
+        res.status(400);
         res.json({success: false, errors: error.array()});
     }
 }
 
-export {validateReq} 
+export {
+    validateReq,
+} 

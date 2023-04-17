@@ -13,6 +13,7 @@ model especie {
   clasificacion          Int
   esperanza_vida         Int
   peso_promedio          Float
+  activo                 Boolean                @default(true)
   clasificacion_animales clasificacionanimales @relation(fields: [clasificacion], references: [id], onDelete: Cascade, map: "especie_ibfk_1")
 
   @@index([clasificacion], map: "clasificacion")

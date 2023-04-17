@@ -2,7 +2,7 @@ import { check } from 'express-validator';
 import { validateReq } from '../helpers/validateHelper.js';
 
 const validateCreate = [
-    check("data").exists().not().isEmpty().isArray().withMessage('El campo "data" debe ser un array'),
+    check("data").exists().isArray().withMessage('El campo "data" debe ser un array'),
     check("data.*.nombre").exists(),
     check("data.*.clasificacion").exists().toInt().isNumeric(),
     check("data.*.esperanza_vida").exists().toInt().isNumeric(),
@@ -12,4 +12,14 @@ const validateCreate = [
     }
 ];
 
-export {validateCreate}
+const validateParams = [
+    check("id").exists().toInt().isInt(),
+    (req, res, next) => {
+        validateReq(req, res, next);
+    }
+]
+
+export {
+    validateCreate,
+    validateParams
+}
