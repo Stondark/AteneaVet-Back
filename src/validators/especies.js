@@ -1,12 +1,13 @@
-import { check } from 'express-validator';
+import { body, check, param, checkExact } from 'express-validator';
 import { validateReq } from '../helpers/validateHelper.js';
 
 const validateCreate = [
     check("data").exists().isArray().withMessage('El campo "data" debe ser un array'),
-    check("data.*.nombre").exists(),
+    check("data.*.nombre").exists().toString,
     check("data.*.clasificacion").exists().toInt().isNumeric(),
     check("data.*.esperanza_vida").exists().toInt().isNumeric(),
     check("data.*.peso_promedio").exists().toFloat().isNumeric(),
+    checkExact(),
     (req, res, next) => {
         validateReq(req, res, next);
     }
@@ -19,7 +20,21 @@ const validateParams = [
     }
 ]
 
+const validateUpdate = [
+    param("id").exists().toInt().isNumeric(),
+    body("nombre").exists(),
+    body("clasificacion").exists().toInt().isNumeric(),
+    body("esperanza_vida").exists().toInt().isNumeric(),
+    body("peso_promedio").exists().toFloat().isNumeric(),
+    checkExact(),
+    (req, res, next) => {
+        validateReq(req, res, next);
+    }
+    
+]
+
 export {
     validateCreate,
-    validateParams
+    validateParams,
+    validateUpdate
 }

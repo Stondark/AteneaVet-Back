@@ -22,7 +22,7 @@ const getEspecies = async (req, res) =>{
 const getEspeciesById = async (req, res) =>{
     const id = req.params.id;
     try {
-        const especies = await prisma.especie.findUnique({
+        const especies = await prisma.especie.findFirst({
             where: {
                 id_especie: id,
                 activo: true
@@ -38,6 +38,7 @@ const getEspeciesById = async (req, res) =>{
 
         return res.json({success: true, data: especies});
     } catch (e) {
+        console.log(e)
         return res.status(500).json({success: false, data: "Oh no... algo salió mal"});
     }
 
@@ -68,8 +69,28 @@ const insertEspecie = async(req, res) =>{
 
 }
 
+const updateEspecieById = async(req, res) =>{
+    const id = req.params.id;
+    const data = req.body;
+
+    try {
+        const especies = await prisma.especie.update({
+            where: {
+                id_especie: id
+            },
+            data: data
+        });
+
+        return res.status(200).json({success: true, data: especies});
+
+    } catch (e) {
+        return res.status(500).json({success: false, data: "Oh no... algo salió mal"});
+    }
+}
+
 export const methods = {
     getEspecies,
     getEspeciesById,
-    insertEspecie
+    insertEspecie,
+    updateEspecieById
 };
