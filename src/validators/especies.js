@@ -3,7 +3,7 @@ import { validateReq } from '../helpers/validateHelper.js';
 
 const validateCreate = [
     check("data").exists().isArray().withMessage('El campo "data" debe ser un array'),
-    check("data.*.nombre").exists().toString,
+    check("data.*.nombre").exists(),
     check("data.*.clasificacion").exists().toInt().isNumeric(),
     check("data.*.esperanza_vida").exists().toInt().isNumeric(),
     check("data.*.peso_promedio").exists().toFloat().isNumeric(),
