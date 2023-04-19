@@ -12,4 +12,6 @@ router.post("/insertEspecie", validateCreate, especieController.insertEspecie);
 
 router.put("/updateEspecieById/:id", validateUpdate, especieController.updateEspecieById);
 
+router.delete("/deleteEspecieById/:id", validateParams, especieController.deleteEspecieById);
+
 export default router;

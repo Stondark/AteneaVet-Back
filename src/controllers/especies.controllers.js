@@ -88,9 +88,29 @@ const updateEspecieById = async(req, res) =>{
     }
 }
 
+const deleteEspecieById = async(req, res) =>{
+    const id = req.params.id;
+    try {
+        const especies = await prisma.especie.update({
+            where: {
+                id_especie: id
+            },
+            data: {
+                activo: false
+            }
+        });
+
+        return res.status(200).json({success: true, "data": "Se eliminó correctamente el recurso"});
+
+    } catch (e) {
+        return res.status(500).json({success: false, data: "Oh no... algo salió mal"});
+    }
+}
+
 export const methods = {
     getEspecies,
     getEspeciesById,
     insertEspecie,
-    updateEspecieById
+    updateEspecieById,
+    deleteEspecieById
 };
