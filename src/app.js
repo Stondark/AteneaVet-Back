@@ -2,13 +2,14 @@ import express from "express";
 import morgan from 'morgan';
 
 import especiesRoutes from "./routes/especies.routes.js";
+import clasificacionRoutes from "./routes/clasificacionanimales.routes.js";
 
 const app = express();
 
 // Settings
 app.use(morgan('dev'));
 
-const PORT = 3000;
+const PORT = 3001;
 app.set("port", PORT);
 
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use((req, res, next) =>{
 })
 
 // Routes
+app.use(clasificacionRoutes);
 app.use(especiesRoutes);
 
 

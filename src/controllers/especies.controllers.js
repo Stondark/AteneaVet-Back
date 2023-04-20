@@ -91,7 +91,7 @@ const updateEspecieById = async(req, res) =>{
 const deleteEspecieById = async(req, res) =>{
     const id = req.params.id;
     try {
-        const especies = await prisma.especie.update({
+        await prisma.especie.update({
             where: {
                 id_especie: id
             },
