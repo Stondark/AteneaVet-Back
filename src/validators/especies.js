@@ -22,7 +22,7 @@ const validateParams = [
 
 const validateUpdate = [
     param("id").exists().toInt().isNumeric(),
-    body("nombre").exists(),
+    body("nombre").exists().notEmpty(),
     body("clasificacion").exists().toInt().isNumeric(),
     body("esperanza_vida").exists().toInt().isNumeric(),
     body("peso_promedio").exists().toFloat().isNumeric(),
