@@ -8,6 +8,17 @@ const validateParams = [
     }
 ]
 
+const validateCreate = [
+    check("data").exists(),
+    check("data.*.nombre_clasificacion").exists().isString(),
+    checkExact(),
+    (req, res, next) => {
+        validateReq(req, res, next);
+    }
+]
+
+
 export {
-    validateParams
+    validateParams,
+    validateCreate
 }
